@@ -19,30 +19,35 @@ namespace ProEventos.API.Controllers
 
         private readonly IEventoServices _eventoServices;
 
+        //construtor 
         public EventosController(IEventoServices eventoServices)
         {
             _eventoServices = eventoServices;
 
 
         }
-
-        [HttpGet]
+        //Criação do Ação Get no http
+        [HttpGet]   
+            //IActionResult utilizando para poder retornar valores, como NotFound
         public async Task<IActionResult> Get()
         {
             try
             {
                 var eventos = await _eventoServices.GetAllEventosAsync(true);
                 if(eventos == null) return NotFound("Evento não encontrado");
-
+                //Guardando dentro da variavel Eventos a função de recuperar todos os dados
+                // e sincronizar caso seja verdade.
                 return Ok(eventos);
             }
+            // tratamento de exceção com mensagem
             catch (Exception ex)
             {
-                
+                // tratamento de erro para o codigo http = 500
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
                  $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
             }
         }
+        //Requisição de Get http passando o Id do Evento
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

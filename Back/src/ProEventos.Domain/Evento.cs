@@ -7,7 +7,8 @@ namespace ProEventos.Domain
     {
         public int Id { get; set; }
         public string Local { get; set; }
-        public DateTime?  DataEvento { get; set; }
+        public DateTime  DataEvento { get; set; }
+        
         public string Tema { get; set; }
         public int QtdPessoa { get; set; }
         
@@ -21,5 +22,7 @@ namespace ProEventos.Domain
         public IEnumerable<RedeSocial> RedeSociais { get; set; }
 
         public IEnumerable<PalestranteEvento> PalestrantesEventos { get; set; }
+
+        
     }
 }

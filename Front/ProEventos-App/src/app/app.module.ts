@@ -10,13 +10,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { FormsModule } from '@angular/forms';
+import { EventoService } from './services/Evento.service';
+import { DateTamiFormatPipe } from './helpers/DateTamiFormat.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventosComponent,
       PalestrantesComponent,
-      NavComponent
+      NavComponent,
+      DateTamiFormatPipe
    ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { FormsModule } from '@angular/forms';
     CollapseModule.forRoot(),
     FormsModule
   ],
-  providers: [],
+  providers: [EventoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

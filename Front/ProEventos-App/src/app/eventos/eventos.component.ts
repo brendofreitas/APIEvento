@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
+import { Evento } from '../Models/Evento';
+import { EventoService } from '../services/Evento.service';
 
 
 @Component({
@@ -9,41 +11,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventosComponent implements OnInit {
 
-  public eventos: any = [] ;
-  public eventosFiltrados : any = [];
+  public eventos: Evento[] = [] ;
+  public eventosFiltrados : Evento[] = [];
   larguraImagem: number = 150;
   margemImagem: number = 2;
   exibirImagem: boolean = true;
-  private _filtroLista: string = '';
+  private filtroListado: string = '';
 
   public get filtroLista(){
-    return this._filtroLista;
+    return this.filtroListado;
   }
   public set filtroLista(value : string){
-    this._filtroLista = value;
-    this.eventosFiltrados = this._filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
+    this.filtroListado = value;
+    this.eventosFiltrados = this.filtroListado ? this.filtrarEventos(this.filtroLista) : this.eventos;
   }
 
-  filtrarEventos(filtrarPor: string): any{
+  filtrarEventos(filtrarPor: string): Evento[]{
 filtrarPor = filtrarPor.toLocaleLowerCase();
 return this.eventos.filter((evento: any) => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
 evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -1)
 }
 
-  constructor(private http: HttpClient) { }
+  constructor(private eventoService : EventoService) { }
 
-  ngOnInit(): void {
+public  ngOnInit(): void {
     this.getEventos();
   }
 
-  alterarImagem() {
+ public alterarImagem() : void {
     this.exibirImagem = !this.exibirImagem;
   }
 
+  //getEventos tem valor nenhum, estamos jogando o valor dentro de "eventos criado no valor any []"
   public getEventos(): void {
-   this.http.get('https://localhost:5001/api/eventos').subscribe(
-     response =>{
-        this.eventos = response;
+    //esta pegando acessando eventoservice onde tem um getEventos e dizendo que _eventos que e do tipo evento.
+    // recebe o valor de eventoService.getEvento e passa para _eventos
+   this.eventoService.getEventos().subscribe(
+     (eventoResp: Evento[]) =>{
+        this.eventos = eventoResp;
         this.eventosFiltrados = this.eventos;
     },
      error => console.log(error)
