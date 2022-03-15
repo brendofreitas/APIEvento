@@ -48,18 +48,18 @@
       <td>{{item.local}}</td>
       <td>{{item.dataEvento | DateFormatPipe}}</td>
       <td>{{item.qtdPessoa}}</td>
-      <td>{{item.lotes[0].nome}}</td>
+      <td>{{item.lotes[0]}}</td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm mr-2"tooltip="Editar">
+        <button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Editar">
           <i class="fa fa-edit"></i>
         </button>
-        <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)="(openModal)(template)">
+        <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)=(openModal)(template)>
         <i class="fa fa-trash"></i>
         </button>
       </td>
     </tr>
   </tbody>
-  <tfoot *ngIf="!eventos">
+  <tfoot *ngIf="!eventos.length">
     <tr>
       <td colspan="8" class="text-center">
         <h4>Nenhum evento encontrado</h4>
