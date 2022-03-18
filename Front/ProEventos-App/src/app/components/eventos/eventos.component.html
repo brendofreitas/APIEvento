@@ -1,21 +1,35 @@
 <app-titulo [titulo]="'Evento'" [iconClass]="'fa fa-calendar-alt'" [botaoListar]="true"></app-titulo>
 <hr>
-<div  class="form-inline">
-  <div class="form-group mb-2">
-    <label class="mr-2">Filtro: </label>
-    <input type="text"
-     class="form-control mr-2"
-      placeholder="buscar"
-      [(ngModel)]="filtroLista"
-      >
 
+<div class="card rounded shadow-sm p-3">
+
+<div  class="d-flex">
+  <div class="flex-fill pr-3">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Filtro: </div>
+      </div>
+
+      <input type="text"
+       class="form-control"
+        placeholder="Filtrar por Tema e Local"
+        [(ngModel)]="filtroLista"
+        >
+    </div>
   </div>
+  <div>
+    <a class="d-flex btn btn-outline-primary" href="#">
+      <i class="fa fa-plus-circle my-1"></i>
+      <b class="ml-1 d-none d-sm-block">Novo</b>
+    </a>
+  </div>
+
 </div>
 <!--<h3>Filtro: {{filtroLista}}</h3> -->
-<table class="table table-striped">
+  <table class="table table-striped">
   <thead class="thead-drak">
     <tr>
-      <th>
+      <th class="d-none d-md-table-cell">
 
         <button type="button" class="btn btn-outline-ligth btn-sm"
         (click)="alterarImagem()">
@@ -26,16 +40,16 @@
       </th>
       <th>#</th>
       <th>Tema</th>
-      <th>Local</th>
+      <th class="d-none d-md-table-cell">Local</th>
       <th>Data</th>
-      <th>Qtd Pessoa</th>
-      <th>Lote</th>
+      <th class="d-none d-md-table-cell">Qtd Pessoa</th>
+      <th class="d-none d-md-table-cell">Lote</th>
       <th>Opções</th>
     </tr>
   </thead>
   <tbody *ngIf="eventos && eventos.length">
     <tr *ngFor="let item of eventosFiltrados">
-      <td>
+      <td class="d-none d-md-table-cell">
         <img [collapse]="!exibirImagem"
         [isAnimated]="true"
         src="/assets/{{item.imagemURL}}"
@@ -45,15 +59,12 @@
       </td>
       <td>{{item.id}}</td>
       <td>{{item.tema}}</td>
-      <td>{{item.local}}</td>
+      <td class="d-none d-md-table-cell">{{item.local}}</td>
       <td>{{item.dataEvento | DateFormatPipe}}</td>
-      <td>{{item.qtdPessoa}}</td>
-      <td>{{item.lotes[0]}}</td>
+      <td class="d-none d-md-table-cell">{{item.qtdPessoa}}</td>
+      <td class="d-none d-md-table-cell">{{item.lotes[0].nome}}</td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Editar">
-          <i class="fa fa-edit"></i>
-        </button>
-        <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)=(openModal)(template)>
+        <button type="button" class="btn btn-danger btn-lg" tooltip="Excluir" (click)=(openModal)(template)>
         <i class="fa fa-trash"></i>
         </button>
       </td>
@@ -67,7 +78,7 @@
     </tr>
   </tfoot>
 </table>
-
+</div>
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Tem certeza que quer deletar este Evento?</p>
