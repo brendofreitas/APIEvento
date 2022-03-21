@@ -1,10 +1,5 @@
 
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
-import { Evento } from '../../Models/Evento';
-import { EventoService } from '../../services/Evento.service';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -14,7 +9,7 @@ import { EventoService } from '../../services/Evento.service';
 })
 export class EventosComponent implements OnInit {
  ngOnInit(): void {
-   
+
  }
 
 }

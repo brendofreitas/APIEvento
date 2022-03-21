@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {HttpClientModule } from '@angular/common/http'
 
@@ -52,11 +52,13 @@ import { RegistrationComponent } from './components/user/registration/registrati
       UserComponent,
       LoginComponent,
       RegistrationComponent
+
    ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
