@@ -10,13 +10,9 @@ import { ValidatorField } from '@app/helpers/ValidatorField';
 export class RegistrationComponent implements OnInit {
 
   form!: FormGroup;
-
-
-
   constructor(private fb: FormBuilder) { }
-
   get f(): any {
-    return this.form.controls;
+  return this.form.controls;
   }
   ngOnInit(): void {
     this.validation();
